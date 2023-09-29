@@ -78,7 +78,7 @@ const ChapterTitle = ({
           )}
         </Button>
       </div>
-      {!isEditing && <p>{initialData.title}</p>}
+      {!isEditing && <p className="capitalize">{initialData.title}</p>}
 
       {isEditing && (
         <Form {...form}>

@@ -58,7 +58,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
   };
 
   return (
-    <div className="mt-3 border rounded-md p-3 ">
+    <div className="mt-3 border rounded-md p-3">
       <div className="font-medium flex items-center justify-between">
         Course name
         <Button onClick={toggleEdit} variant="ghost">
@@ -72,7 +72,7 @@ const TitleForm = ({ initialData, courseId }: TitleFormProps) => {
           )}
         </Button>
       </div>
-      {!isEditing && <p>{initialData.title}</p>}
+      {!isEditing && <p className="capitalize">{initialData.title}</p>}
 
       {isEditing && (
         <Form {...form}>
