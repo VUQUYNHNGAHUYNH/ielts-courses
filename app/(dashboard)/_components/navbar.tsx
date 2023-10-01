@@ -5,7 +5,7 @@ import NavbarRoutes from "./navbar-routes";
 
 const Navbar = () => {
   return (
-    <div className="p-3 border-b h-full flex items-center justify-between shadow-sm">
+    <div className="p-3 border-b bg-white h-full flex items-center justify-between shadow-sm">
       {/* MobileSidebar */}
       <Sheet>
         <SheetTrigger className="md:hidden pr-4 hover:opacity-75 transition">
