@@ -1,10 +1,11 @@
 import { getChapter } from "@/actions/get-chapters";
 import { Preview } from "@/components/preview";
 import { auth } from "@clerk/nextjs";
-import { File } from "lucide-react";
+import { CheckCircle, File } from "lucide-react";
 import { redirect } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { CourseEnrollButton } from "./_components/enroll-button";
+import CourseProgressButton from "./_components/progress-button";
 import { VideoPlayer } from "./_components/video-player";
 
 const ChapterIdPage = async ({
@@ -41,7 +42,13 @@ const ChapterIdPage = async ({
 
   return (
     <div>
-      {userProgress?.isCompleted && toast.success("You completed this chapter")}
+      {userProgress?.isCompleted && (
+        <div className="p-2 text-sm gap-x-2 flex items-center justify-center mx-auto w-full sticky bg-emerald-200">
+          <CheckCircle />
+          {chapter.title} completed!
+        </div>
+      )}
+
       {isLocked && toast.error("You need to purchase this chapter")}
 
       <div className="flex flex-col mx-auto max-x-4xl gap-y-2">
@@ -59,7 +66,12 @@ const ChapterIdPage = async ({
         <div className="p-4 flex flex-col items-center justify-between md:flex-row gap-y-4 ">
           <div className="text-2xl capitalize">{chapter.title}</div>
           {purchase ? (
-            <div>Bought</div>
+            <CourseProgressButton
+              chapterId={params.chapterId}
+              courseId={params.courseId}
+              nextChapterId={nextChapter?.id}
+              isCompleted={!!userProgress?.isCompleted}
+            />
           ) : (
             <CourseEnrollButton
               courseId={params.courseId}
